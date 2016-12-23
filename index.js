@@ -1,7 +1,6 @@
 var util = require('util');
 var pino = require('pino');
 var env = 'development';
-
 // log
 var pretty;
 if (env === 'development') {
@@ -16,7 +15,7 @@ if (env === 'development') {
   logger.level = 'trace';
 }
 
-var init = function(args) {
+var init = function() {
   return logger;
 };
 
@@ -41,6 +40,6 @@ logger.transports = {
       return null;
     }
   }
-}
+};
 
 module.exports = logger;
