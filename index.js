@@ -1,19 +1,10 @@
 var util = require('util');
 var pino = require('pino');
-var env = 'development';
+
 // log
-var pretty;
-if (env === 'development') {
-  pino.pretty = require('./pino-pretty');
-  pretty = pino.pretty();
-  pretty.pipe(process.stdout);
-}
+var logger = pino();
+logger.level = 'trace';
 
-var logger = pino(undefined, pretty);
-
-if (env === 'development') {
-  logger.level = 'trace';
-}
 
 var init = function() {
   return logger;
@@ -36,7 +27,6 @@ logger.Logger = function() {
 logger.transports = {
   Console: function() {
     return function(args) {
-      console.log('args2: ', args);
       return null;
     }
   }
